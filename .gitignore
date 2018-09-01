@@ -1,0 +1,14 @@
+venv/
+djangoEnv/
+FlaskEnv/
+
+
+# Django-DB (default sqlite3)
+*.sqlite3
+migrations/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
