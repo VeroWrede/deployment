@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+
+<body>
+    <!-- {{request.session.user_id}} -->
+    <a href="{% url 'users:logout' %}" class="button">Logout</a>
+
+    <h1>welcome {{user.name}}</h1>
+    {{ all }}
+    <hr>
+    <!-- <h2>{{ all }}</h2> -->
+    <hr>
+    <h3>People you may want to poke</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Alias</th>
+                <th>Email</th>
+                <th>Poke History</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in all %}
+            <tr>
+                <td>{{ user.name }}</td>
+                <td>{{ user.alias }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.poked_number }}</td>
+                <td>
+                    <a href="{% url 'pokes:poke' receiver_id=user.id %}" class="button">Poke</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+</body>
+
+</html>

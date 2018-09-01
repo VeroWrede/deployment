@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>user Index</title>
+</head>
+
+<body>
+    {{request.session.user_id}}
+    <h2>welcome</h2>
+    <br> {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+    </ul>
+    {% endif %}
+    <h3>create an account or log in</h3>
+    <hr>
+    <form action="{% url 'users:create' %}" method="post">
+        {% csrf_token %}
+        <label for="name">Name</label>
+        <br>
+        <input type="text" name="name" placeholder="Sponge Bob">
+        <br>
+        <label for="user_name">Alias</label>
+        <br>
+        <input type="text" name="alias" placeholder="Bob Sponge">
+        <br>
+        <label for="email">Email</label>
+        <br>
+        <input type="text" name="email" placeholder="cool@stuff.go">
+        <br>
+        <label for="password">password</label>
+        <br>
+        <input type="password" name="password" placeholder="your darkest secret ......">
+        <br>
+        <label for="confirm">confirm password</label>
+        <br>
+        <input type="password" name="confirm" placeholder="rubSomeBaconOnIt">
+        <br>
+        <label for="dob">Date od Birth</label>
+        <br>
+        <input type="date" name="dob">
+        <br>
+        <input type="submit" value="Register">
+    </form>
+    <br>
+    <h3>New User form</h3>
+    <hr>
+    <form action="{% url 'users:login' %}" method="post">
+        {% csrf_token %}
+        <label for="email">Email</label>
+        <br>
+        <input type="text" name="email">
+        <br>
+        <label for="password">password</label>
+        <br>
+        <input type="password" name="password">
+        <br>
+        <input type="submit" value="Login">
+    </form>
+
+
+</body>
+
+</html>
