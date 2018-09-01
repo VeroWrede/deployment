@@ -2,8 +2,7 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render, redirect, HttpResponse
-from ..users.models import User
-from .models import Poke
+from .models import Poke, User
 
 
 # receiver_id refers to the id of a person listed (receiver), not the logged in user

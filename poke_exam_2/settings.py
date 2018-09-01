@@ -51,7 +51,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'poke_exam.urls'
+ROOT_URLCONF = 'poke_exam_2.urls'
 
 TEMPLATES = [
     {
@@ -69,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'poke_exam.wsgi.application'
+WSGI_APPLICATION = 'poke_exam_2.wsgi.application'
 
 
 # Database

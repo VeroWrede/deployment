@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from .models import User
+from ..pokes.models import User
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib import messages
 
