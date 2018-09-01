@@ -16,6 +16,13 @@
 
     <h1>welcome {{user.name}}</h1>
     {{ all }}
+    <h3>People who poked you!</h3>
+    {% for poker in pokers %}
+        <ul>
+            <li>{{ poker.name }} poked you x many times.</li>
+        </ul>
+    {% endfor %}
+
     <hr>
     <!-- <h2>{{ all }}</h2> -->
     <hr>

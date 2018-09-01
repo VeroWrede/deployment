@@ -13,6 +13,7 @@ def poke(req, receiver_id):
 
     giver_id = req.session['user_id']
     valid = Poke.objects.create_poke(receiver_id, giver_id)
+    
     if not valid:
         return HttpResponse('model couldnt find receciver')
     

@@ -10,7 +10,6 @@ import re
 # from ..users.models import User
 
 class PokeManager(models.Manager):
-    # can't import User into this file so logic will be in views
     def add_poke(self, receiver_id):
         try:
             receiver = User.objects.get(id=receiver_id)
@@ -19,10 +18,7 @@ class PokeManager(models.Manager):
             return True
         except:
             return False
-    # get giver
-    # get receiver
-    # create object
-
+    
     def create_poke(self, receiver_id, giver_id):
         giver = User.objects.get(id=giver_id)
             
@@ -31,6 +27,7 @@ class PokeManager(models.Manager):
                 giver=giver.name,
                 receiver=User.objects.get(id=receiver_id)
             )
+            
             return True
         except:
             return False
