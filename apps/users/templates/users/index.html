@@ -15,13 +15,17 @@
     <a href="{% url 'users:logout' %}" class="button">Logout</a>
 
     <h1>welcome {{user.name}}</h1>
-    {{ all }}
-    <h3>People who poked you!</h3>
-    {% for poker in pokers %}
-        <ul>
-            <li>{{ poker.name }} poked you x many times.</li>
-        </ul>
-    {% endfor %}
+    {% if count %}
+        <h2>{{ count }} poeple have poked you</h2>
+        <hr>
+        <h3>People who poked you!</h3>
+        {% for poke in pokers %}
+            <ul>
+                <li> {{ poke.giver }} poked you {{ poke.poked_number }} many times.</li>
+            </ul>
+        {% endfor %}
+    {% endif %}
+    
 
     <hr>
     <!-- <h2>{{ all }}</h2> -->

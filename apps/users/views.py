@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from ..pokes.models import User
+from ..pokes.models import User, Poke
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib import messages
 
@@ -10,9 +10,14 @@ def index(req):
     return redirect('users:new')
 
   user_id = req.session['user_id']
+  pokers = Poke.objects.filter(receiver__in=User.objects.filter(id=user_id).order_by('poked_number'))
+  # count = pokers.count()
   context = {
     'user': User.objects.get(id=user_id),
-    'all': User.objects.all()
+    'count': pokers.count(),
+    'all': User.objects.exclude(id=user_id),
+    'pokes': User.objects.filter(id=user_id).filter(users__in=Poke.objects.all()),
+    'pokers': pokers
   }
   return render(req, 'users/index.html', context)
 

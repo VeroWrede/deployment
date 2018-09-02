@@ -21,22 +21,17 @@ class PokeManager(models.Manager):
     
     def create_poke(self, receiver_id, giver_id):
         giver = User.objects.get(id=giver_id)
-            
+        
         try:
             poke = self.create(
                 giver=giver.name,
                 receiver=User.objects.get(id=receiver_id)
             )
-            
+
             return True
         except:
-            return False
+            return HttpResponse('poke was not created')
             
-
-# one to many: each poke is created by one person, one person can create many pokes
-# giver is name of person who created poke
-# receiver is foreign key, person who was poked
- 
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
 class UserManager(models.Manager):
@@ -97,10 +92,13 @@ class User(models.Model):
     last_mod = models.DateTimeField(auto_now=True)
     objects = UserManager()
 
-
+# one to many: each poke is created by one person, one person can create many pokes
+# giver is name of person who created poke
+# receiver is foreign key, person who was poked
+ 
 class Poke(models.Model):
     giver = models.CharField(max_length=100)
-    receiver = models.CharField(max_length=100)
+    receiver = models.ForeignKey(User, related_name='users')
     objects = PokeManager()
 
 def __str__(self):

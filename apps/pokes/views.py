@@ -10,7 +10,6 @@ def poke(req, receiver_id):
     valid = Poke.objects.add_poke(receiver_id)
     if not valid:
         return HttpResponse('poke was not added')
-
     giver_id = req.session['user_id']
     valid = Poke.objects.create_poke(receiver_id, giver_id)
     
