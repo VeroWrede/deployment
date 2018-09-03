@@ -11,7 +11,11 @@ def index(req):
 
   user_id = req.session['user_id']
   pokers = Poke.objects.filter(receiver__in=User.objects.filter(id=user_id).order_by('poked_number'))
-  # count = pokers.count()
+  # grouped_pokers =Poke.objects.raw(
+  #                                 SELECT COUNT(
+  #                                         SELECT * from Poke
+  #                                         WHERE receiver = logged_in_user)
+  #                                 GROUP BY poker)
   context = {
     'user': User.objects.get(id=user_id),
     'count': pokers.count(),
